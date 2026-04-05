@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+    <h3 class="text-center mb-4">📝 Your Tasks</h3>
+
+    <!-- Add Task -->
+    <form method="POST" class="d-flex mb-4">
+        {% csrf_token %}
+        <input type="text" name="title" class="form-control me-2" placeholder="Enter task">
+        <button class="btn btn-primary">Add</button>
+    </form>
+
+    <!-- Task List -->
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+            <span class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}">
+                {{ task.title }}
+            </span>
+
+            <div>
+                <a href="{% url 'toggle' task.id %}" class="btn btn-success btn-sm">✔</a>
+                <a href="{% url 'edit' task.id %}" class="btn btn-warning btn-sm">✏️</a>
+                <a href="{% url 'delete' task.id %}" class="btn btn-danger btn-sm">❌</a>
+            </div>
+
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center">No tasks yet 😢</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
