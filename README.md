@@ -41,4 +41,4 @@ A full-stack Todo List web application built using Django. This project allows u
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/todo-app-django.git
+[git clone https://github.com/your-username/todo-app-django.git](https://github.com/krishd-bot/Todo-app-django)
